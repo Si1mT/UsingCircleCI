@@ -6,5 +6,26 @@ jobs:
     steps:
       - checkout
       - run: npm install
+  test:
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/node:4.8.2 # the primary container, where your job's commands are run
+    steps:
+      - checkout
       - run: npm run test
+  lint:
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/node:4.8.2 # the primary container, where your job's commands are run
+    steps:
+      - checkout
       - run: npm run lint
+workflows:
+ version: 2
+ install_test_and_lint:
+  jobs:
+    - install
+    - test:
+      requires:
+       - install
+    - lint:
+      requires:
+       - install
