@@ -24,8 +24,8 @@ workflows:
   jobs:
     - install
     - test:
-      requires:
-       - install
+        requires:
+        - install
     - lint:
-      requires:
-       - test
+        requires:
+        - test
