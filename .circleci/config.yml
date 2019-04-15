@@ -28,4 +28,4 @@ workflows:
         - install
     - lint:
         requires:
-        - test
+        - install
